@@ -48,7 +48,4 @@ jobs:
           path: './react-project/dist'
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: './react-porject'
+        uses: actions/deploy-pages@v4
