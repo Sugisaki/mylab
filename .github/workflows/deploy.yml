@@ -43,12 +43,14 @@ jobs:
         run: cd react-project && npm i && npm run build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
-        with:
+        # with:
           # ビルド生成物はdistフォルダ
-          path: './react-project/dist'
+          # path: './react-project/dist'
 
       - name: Copy static files
         run: cp -R './android' './react-project/.'
+      - name: Copy static files
+        run: cp './android/roundrun/privacy.html' './react-project/dist/.'
 
       - name: Deploy to GitHub Pages
         id: deployment
