@@ -58,7 +58,7 @@ jobs:
       #- name: Copy static files
         #run: cp -R './android/*' './react-project/dist/.'
       - name: Copy static files
-        run: cp './android/roundrun/privacy.html' './react-project/dist/.'
+        run: cp './android/roundrun/privacy.html' './react-project/dist/index.html'
 
       - name: Deploy to GitHub Pages
         id: deployment
