@@ -46,19 +46,14 @@ jobs:
       - name: Prepare deployment directory
         run: |
           mkdir './react-project/dist'
-          #cp -r ./static/* ./deployment/ # 静的ページをコピー
-          #cp -r ./react-app/dist/* ./deployment/ # React アプリのビルド成果物をコピー
+          cp './android/roundrun/privacy.html' './react-project/dist/index.html'
+          cp -r ./android/* ./react-project/dist/
         
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           # ビルド生成物はdistフォルダ
           path: './react-project/dist'
-
-      #- name: Copy static files
-        #run: cp -R './android/*' './react-project/dist/.'
-      - name: Copy static files
-        run: cp './android/roundrun/privacy.html' './react-project/dist/index.html'
 
       - name: Deploy to GitHub Pages
         id: deployment
