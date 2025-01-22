@@ -48,7 +48,7 @@ jobs:
           path: './react-project/dist'
 
       - name: Copy static files
-        run: cp -R './android' './react-project/dist/.'
+        run: cp -R './android' './react-project/.'
 
       - name: Deploy to GitHub Pages
         id: deployment
