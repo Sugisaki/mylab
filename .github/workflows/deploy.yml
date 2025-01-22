@@ -46,6 +46,10 @@ jobs:
         with:
           # ビルド生成物はdistフォルダ
           path: './react-project/dist'
+
+      - name: Copy static files
+        run: cp -R ./android './react-project/dist/'
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
