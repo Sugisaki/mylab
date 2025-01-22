@@ -50,6 +50,6 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # github_token: ${{ secrets.GITHUB_TOKEN }}
           # 公開したいディレクトリ
-          publish_dir: './react-porject'
+          publish_dir: './react-porject/dist'
