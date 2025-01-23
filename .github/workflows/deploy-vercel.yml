@@ -28,6 +28,12 @@ jobs:
       # ビルドは ./dist に
       - name: build
         run: cd react-project && npm i && npm run build
+      # デプロイ用ディレクトリを作成してコピー
+      - name: Prepare deployment directory
+        run: |
+          mkdir deployment
+          cp -r ./android/* ./deployment/ # 静的ページをコピー
+          cp -r ./react-project/dist/* ./deployment/ # React アプリのビルド成果物をコピー
 
   # Deployment job
   deploy:
@@ -54,5 +60,5 @@ jobs:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
         run: |
-          vercel --cwd react-project/dist
+          vercel --prod -d ./deployment
           vercel deploy --prod --token=$VERCEL_TOKEN
