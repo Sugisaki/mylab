@@ -1,0 +1,58 @@
+name: Deploy Web Application
+
+# Define when the workflow should run
+on:
+  # Trigger on pushes to vercel branch
+  push:
+    branches: [ "vercel" ]
+
+  # Also allow manual triggering
+  workflow_dispatch:
+
+# Define jobs that will run in the workflow
+jobs:
+  # Build and test job
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository code
+      - uses: actions/checkout@v4
+
+      # Setup Node.js environment
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      # ビルドは ./dist に
+      - name: build
+        run: cd react-project && npm i && npm run build
+
+  # Deployment job
+  deploy:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # Setup Node.js
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      # Install Vercel CLI
+      - name: Install Vercel CLI
+        run: npm install -g vercel@latest
+
+      # Deploy to Vercel
+      - name: Deploy to Vercel
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: |
+          vercel deploy --prod --token=$VERCEL_TOKEN
