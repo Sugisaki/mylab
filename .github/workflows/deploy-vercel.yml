@@ -54,5 +54,5 @@ jobs:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
         run: |
-          vercel --prod -d ./react-project/dist
+          vercel --prod -d ~/work/mylab/react-project/dist
           vercel deploy --prod -d ./react-project/dist --token=$VERCEL_TOKEN
