@@ -27,7 +27,7 @@ jobs:
 
       # ビルドは ./dist に
       - name: build
-        run: cd react-project && npm i && npm run build
+        run: cd react-project && npm i && npm run build && cd ..
       # デプロイ用ディレクトリを作成してコピー
       - name: Prepare deployment directory
         run: |
