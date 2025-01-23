@@ -47,7 +47,7 @@ jobs:
         run: |
           mkdir deployment
           cp -r ./android/* ./deployment/ # 静的ページをコピー
-          cp -r ./react-app/dist/* ./deployment/ # React アプリのビルド成果物をコピー
+          cp -r ./react-project/dist/* ./deployment/ # React アプリのビルド成果物をコピー
 
       # ビルド生成物
       - name: Upload artifact
