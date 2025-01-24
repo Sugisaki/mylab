@@ -3,9 +3,13 @@ env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 on:
+  # Trigger on pushes to vercel branch
   push:
-    branches-ignore:
-      - vercel
+    branches: [ "vercel" ]
+
+  # Also allow manual triggering
+  workflow_dispatch:
+
 jobs:
   # Build
   build:
