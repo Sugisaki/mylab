@@ -12,8 +12,13 @@ on:
 
 jobs:
   # Build
-  build:
+  build-and-test:
+    runs-on: ubuntu-latest
+
     steps:
+      # Checkout the repository code
+      - uses: actions/checkout@v4
+
       # セットアップ Node
       - name: Setup Node
         uses: actions/setup-node@v3
